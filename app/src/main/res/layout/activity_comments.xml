@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Comments">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="53dp"
+            android:id="@+id/profileCommentImage"
+            android:layout_height="53dp"
+
+            android:background="@drawable/theuser"
+            app:civ_border_color="#000000"
+            app:civ_border_width="2dp"/>
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/profileCommentImage"
+            android:layout_toStartOf="@+id/addCommentButton"
+            android:id="@+id/editComment"
+            android:hint="@string/enterComment"
+            />
+
+        <Button
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:id="@+id/addCommentButton"
+            android:background="@drawable/send"
+            />
+
+
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

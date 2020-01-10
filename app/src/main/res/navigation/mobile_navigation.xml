@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.movieapp.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.movieapp.ui.toprated.TopRatedFragment"
+        android:label="@string/title_top_rated"
+        tools:layout="@layout/fragment_top_rated" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.movieapp.ui.Upcoming.UpcomingFragment"
+        android:label="@string/title_upcoming"
+        tools:layout="@layout/fragment_upcoming" />
+
+    <fragment
+        android:id="@+id/nav_tools"
+        android:name="com.example.movieapp.ui.Watchlist.WatchlistFragment"
+        android:label="@string/menu_tools"
+        tools:layout="@layout/fragment_tools" />
+
+    <fragment
+        android:id="@+id/nav_whattowatch"
+        android:name="com.example.movieapp.ui.what_to_watch.RandomGeneraterFragment"
+        android:label="@string/menu_whatto_watch"
+        tools:layout="@layout/what_to_watch_fragment"/>
+
+
+    <fragment
+        android:id="@+id/nav_share"
+        android:name="com.example.movieapp.ui.RandomMovie.RandomMovie"
+        android:label="@string/what_to_watch"
+        tools:layout="@layout/fragment_what_to_watch" />
+
+    <fragment
+        android:id="@+id/nav_send"
+        android:name="com.example.movieapp.ui.Logout.LogOut"
+        android:label="@string/menu_send"
+        tools:layout="@layout/fragment_send" />
+</navigation>

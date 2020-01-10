@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/cardview_compat_inset_shadow">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/imgWatchlistrow"
+                android:layout_width="121dp"
+                android:layout_height="154dp"
+                android:background="@android:color/white"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+
+
+            <TextView
+                android:id="@+id/movie_title_watchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/imgWatchlistrow"
+                android:layout_marginLeft="8dp"
+                android:text="@string/title"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/year_watchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/imgWatchlistrow"
+                android:layout_below="@+id/movie_title_watchlist"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/year" />
+
+
+            <TextView
+                android:id="@+id/rating_watchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/year_watchlist"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@+id/imgWatchlistrow"
+                android:text="@string/rating" />
+
+            <TextView
+                android:id="@+id/runtime_watchlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating_watchlist"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@+id/imgWatchlistrow"
+                android:text="@string/runtime" />
+            <Button
+                android:id="@+id/watchedWatchlist"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/success"
+                android:layout_below="@+id/runtime_watchlist"
+                android:layout_toEndOf="@+id/imgWatchlistrow"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                style="?android:attr/borderlessButtonStyle"
+                android:gravity="center"/>
+            <Button
+                android:id="@+id/remove"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/runtime_watchlist"
+                android:background="@drawable/clear"
+                android:layout_toEndOf="@id/watchedWatchlist"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_marginLeft="30dp"/>
+
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_homeM"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_top_rated"
+            android:icon="@drawable/top_rated"
+            android:title="Top Rated" />
+        <item
+            android:id="@+id/upcoming"
+            android:icon="@drawable/upcoming"
+            android:title="Upcoming Movies" />
+        <item
+            android:id="@+id/watchlist"
+            android:icon="@drawable/ic_watch_list"
+            android:title="Watchlist" />
+        <item
+            android:id="@+id/whattowatch"
+            android:icon="@drawable/what_to_watch"
+            android:title="What to watch" />
+        <item
+            android:id="@+id/signout"
+            android:icon="@drawable/logout"
+            android:title="Sign Out" />
+    </group>
+
+</menu>
