@@ -26,14 +26,8 @@
     <fragment
         android:id="@+id/nav_tools"
         android:name="com.example.movieapp.ui.Watchlist.WatchlistFragment"
-        android:label="@string/menu_tools"
+        android:label="@string/watchlist_nav"
         tools:layout="@layout/fragment_tools" />
-
-    <fragment
-        android:id="@+id/nav_whattowatch"
-        android:name="com.example.movieapp.ui.what_to_watch.RandomGeneraterFragment"
-        android:label="@string/menu_whatto_watch"
-        tools:layout="@layout/what_to_watch_fragment"/>
 
 
     <fragment

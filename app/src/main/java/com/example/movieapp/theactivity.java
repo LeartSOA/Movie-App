@@ -98,7 +98,7 @@ public class theactivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_whattowatch, R.id.nav_share, R.id.nav_send)
+                R.id.nav_tools,  R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -114,23 +114,7 @@ public class theactivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-
-
-        Log.d("Position in code", "I'm onOptions");
-        if(item.getItemId() == R.id.nav_whattowatch)
-        {
-            Toast.makeText(this, "What to Watch selected", Toast.LENGTH_LONG).show();
-
-
-
-            Log.d("Position in code", "I'm in the condition");
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public boolean onSupportNavigateUp() {
