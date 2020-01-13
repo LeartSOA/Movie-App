@@ -26,7 +26,7 @@
         android:drawableLeft="@drawable/ic_email"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
