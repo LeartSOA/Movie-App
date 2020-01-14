@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -186,6 +187,10 @@ public class TopRatedFragment extends Fragment {
                                 movieList.add(movie);
                             }
                             adapter.notifyDataSetChanged();
+
+                            if(adapter.getItemCount() == 0){
+                                Toast.makeText(getContext(), "No results for your search", Toast.LENGTH_SHORT).show();
+                            }
 
                         } catch (Exception e) {
                             e.printStackTrace();

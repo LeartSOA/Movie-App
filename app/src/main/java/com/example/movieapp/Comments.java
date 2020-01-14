@@ -48,6 +48,7 @@ public class Comments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
+        this.setTitle("Comments");
         commentsModels = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.commentsRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -153,6 +154,10 @@ public class Comments extends AppCompatActivity {
                             commentsModels.add(comments);
                         }
                         adapter.notifyDataSetChanged();
+
+                        if(adapter.getItemCount() == 0){
+                            Toast.makeText(context, "No comments for this post", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override

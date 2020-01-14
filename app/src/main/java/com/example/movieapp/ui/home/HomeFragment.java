@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -220,6 +221,9 @@ public class HomeFragment extends Fragment {
                             }
                             Log.d("items inside", String.valueOf(movieList.size()));
                             adapter.notifyDataSetChanged();
+                            if(adapter.getItemCount() == 0){
+                                Toast.makeText(getContext(), "No results for your search", Toast.LENGTH_SHORT).show();
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

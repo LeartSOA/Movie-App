@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "You are already logged in", Toast.LENGTH_SHORT).show();
 
                         startActivity(new Intent(MainActivity.this, theactivity.class));
+                        finish();
                     }
                     else {
                         Toast.makeText(MainActivity.this, "Please log in", Toast.LENGTH_SHORT).show();
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                                 else{
                                     Toast.makeText(MainActivity.this, "Signed in succesfully", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(MainActivity.this, theactivity.class));
+                                    finish();
                                 }
                         }
                     });

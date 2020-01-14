@@ -2,6 +2,7 @@ package com.example.movieapp;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -193,8 +194,8 @@ public class Details extends YouTubeBaseActivity {
     public void playViedo(int idlink){
         String thelink= String.valueOf(idlink);
         builder =  new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.youtube_player, null);
-        YouTubePlayerView youTubePlayerView = (YouTubePlayerView) view.findViewById(R.id.youtID);
+        final View view = getLayoutInflater().inflate(R.layout.youtube_player, null);
+        final YouTubePlayerView youTubePlayerView = (YouTubePlayerView) view.findViewById(R.id.youtID);
         //Log.d("requesLink",Constants.cast + thelink + "/videos?" + Constants.api_key);
         JsonObjectRequest json = new JsonObjectRequest(Request.Method.GET, Constants.cast + thelink + "/videos?" + Constants.api_key, null,
                 new Response.Listener<JSONObject>() {
@@ -204,11 +205,46 @@ public class Details extends YouTubeBaseActivity {
                             JSONArray results = response.getJSONArray("results");
 
                             for(int i=0;i<results.length();i++){
-                                JSONObject trailerObject = results.getJSONObject(i);
+                                final JSONObject trailerObject = results.getJSONObject(i);
                                 if(i == 0) {
-                                    videoLink = trailerObject.getString("key");
-                                    yt.setKey(videoLink);
-                                    Log.d("inside the Condition", videoLink);
+                                    builder.setView(view);
+                                    dialog = builder.create();
+                                    Log.d("VideoLink", videoLink+"char");
+                                    dialog.show();
+
+                                    mYoutubeListener = new YouTubePlayer.OnInitializedListener() {
+                                        @Override
+                                        public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                                            try {
+                                                Log.d("Youtube", "Succes initializing");
+                                                youTubePlayer.setShowFullscreenButton(false);
+                                                Log.d("link", trailerObject.getString("key"));
+                                                youTubePlayer.loadVideo(trailerObject.getString("key"));
+                                            }
+                                            catch (Exception e){
+                                                e.printStackTrace();
+                                                Log.d("Error Exception", "the Exception message:"+e.getMessage());
+                                                dialog.dismiss();
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                                            Log.d("Youtube" , "Failed to initialize");
+                                            dialog.dismiss();
+                                        }
+                                    };
+
+                                    youTubePlayerView.initialize(YoutubeConfig.api_key, mYoutubeListener);
+
+                                    dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                        @Override
+                                        public void onCancel(DialogInterface dialog) {
+
+                                        }
+                                    });
+
                                 }
                                 Log.d("Video Name", trailerObject.getString("key"));
                                 Log.d("inside the loop", videoLink);
@@ -228,35 +264,6 @@ public class Details extends YouTubeBaseActivity {
         });
 
         queue.add(json);
-        builder.setView(view);
-        dialog = builder.create();
-        Log.d("VideoLink", videoLink+"char");
-        dialog.show();
-
-        mYoutubeListener = new YouTubePlayer.OnInitializedListener() {
-            @Override
-            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                try {
-                    Log.d("Youtube", "Succes initializing");
-                    youTubePlayer.setShowFullscreenButton(false);
-                    youTubePlayer.loadVideo(yt.getKey());
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                    Log.d("Error Exception", "the Exception message:"+e.getMessage());
-                    dialog.dismiss();
-                }
-
-            }
-
-            @Override
-            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-                Log.d("Youtube" , "Failed to initialize");
-                dialog.dismiss();
-            }
-        };
-
-        youTubePlayerView.initialize(YoutubeConfig.api_key, mYoutubeListener);
 
 
 

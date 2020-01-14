@@ -12,6 +12,7 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.Data.PostsRecyclerAdapter;
 import com.Model.MoviePosts;
@@ -108,6 +109,9 @@ public class Posts extends AppCompatActivity {
 
                 }
                 adapter.notifyDataSetChanged();
+                if(adapter.getItemCount() == 0){
+                    Toast.makeText(context, "No posts about this movie", Toast.LENGTH_SHORT).show();
+                }
 
             }
 
