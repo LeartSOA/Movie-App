@@ -1,8 +1,11 @@
 package com.example.movieapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Util.NetworkAccess;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +30,15 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailEdit;
     private EditText passwordEdit;
     private FirebaseAuth mAuth;
+
+
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private NetworkAccess connection;
+
+    private AlertDialog.Builder builder;
+
+    private Context context= this;
 
     private TextView clickButton;
 
@@ -37,6 +49,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+
+        NetworkAccess conn = new NetworkAccess();
+            if(!conn.Connected(this)){
+
+                builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("No Internet Connection");
+                builder.setMessage("You're not connected to the internet, an internet connection is essential to this app. Click 'OK' to exit");
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+
+                builder.create().show();
+
+
+        }
 
 
 
@@ -115,12 +147,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+
+        connection = new NetworkAccess();
+
+        if(!connection.Connected(this)){
+
+        }
+        else{
+
+            mAuth.addAuthStateListener(mAuthListener);
+        }
+
+
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+
         if(mAuthListener != null){
             mAuth.removeAuthStateListener(mAuthListener);
         }
