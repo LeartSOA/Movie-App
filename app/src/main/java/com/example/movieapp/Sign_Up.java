@@ -150,16 +150,16 @@ public class Sign_Up extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == GALLERY_CODE && resultCode == RESULT_OK);
         {
-            if (data != null) {
+            if (data.getData() != null) {
                 Uri mImageUri = data.getData();
 
                 CropImage.activity(mImageUri)
-                        .setAspectRatio(1, 1)
                         .setGuidelines(CropImageView.Guidelines.ON)
+                        .setAspectRatio(1, 1)
                         .start(this);
             }
             else {
-                Toast.makeText(getApplicationContext(), "Error data is null", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Error data is null", Toast.LENGTH_LONG).show();
                 Log.d("Value is null", "Yes it is");
             }
         }

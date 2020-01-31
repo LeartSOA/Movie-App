@@ -2,6 +2,7 @@ package com.Data;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.Model.MovieWatchlist;
+import com.example.movieapp.Details;
 import com.example.movieapp.Posts;
 import com.example.movieapp.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,6 +58,7 @@ public class WatchlistRecyclerAdapter extends RecyclerView.Adapter<WatchlistRecy
         holder.year.setText(movie.getYear());
         holder.rating.setText(rating_text);
         holder.runtime.setText(runtime_text);
+        Log.d("movieID",String.valueOf( movie.getId()));
         if (!(movieList.size() >= 0)){
             Toast.makeText(context, "No Movies on Your Watchlist", Toast.LENGTH_SHORT).show();
         }
@@ -98,6 +101,15 @@ public class WatchlistRecyclerAdapter extends RecyclerView.Adapter<WatchlistRecy
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    MovieWatchlist mov = movieList.get(getAdapterPosition());
+                    Intent intent =  new Intent(context, Details.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("id", mov.getId());
+                    Log.d("movid" , String.valueOf(mov.getId()));
+                    intent.putExtra("name", mov.getTitle());
+                    context.startActivity(intent);
+
+
                 }
             });
         }

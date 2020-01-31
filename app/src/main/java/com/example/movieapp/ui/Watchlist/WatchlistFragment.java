@@ -1,8 +1,12 @@
 package com.example.movieapp.ui.Watchlist;
 
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -52,6 +56,7 @@ public class WatchlistFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_tools, container, false);
 
+        setHasOptionsMenu(true);
         final ArrayList<String> title = new ArrayList<String>();
         queue = Volley.newRequestQueue(getContext());
         recyclerView = (RecyclerView) root.findViewById(R.id.watchlistRecycler);
@@ -74,7 +79,7 @@ public class WatchlistFragment extends Fragment {
                 }
                 //movieWatchlists.clear();
                 for(int n=0; n<title.size(); n++){
-                    f = n;
+                    final int f = n;
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Constants.cast + dataSnapshot.child(title.get(n)).getValue()+"?" + Constants.api_key,
                             null, new Response.Listener<JSONObject>() {
@@ -86,6 +91,7 @@ public class WatchlistFragment extends Fragment {
                                 MovieWatchlist movie = new MovieWatchlist();
                                 movie.setId(Integer.parseInt((String) dataSnapshot.child(title.get(f)).getValue()));
                                 Log.d("Value of f", String.valueOf(f));
+                                Log.d("Value of id", dataSnapshot.child(title.get(f)).getValue().toString());
                                 movie.setRating(response.getDouble("vote_average"));
                                 movie.setRuntime(String.valueOf(response.getInt("runtime")));
                                 movie.setImgLink(response.getString("poster_path"));
@@ -141,5 +147,10 @@ public class WatchlistFragment extends Fragment {
 
     }
 
-
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item = menu.findItem(R.id.action_search);
+        item.setVisible(false);
+    }
 }

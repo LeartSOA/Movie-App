@@ -129,7 +129,10 @@ public class theactivity extends AppCompatActivity {
         fab.hide();
     }
 
+
+
     public void hideFab(){
         fab.hide();
     }
+
 }
